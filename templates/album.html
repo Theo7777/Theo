@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Images This creates individual pages for albums -->
+<ul>
+	<div class = 'title'> <h3>{{album.title}}</h3></div>
+	<ul>
+		{% for img in images.object_list %}
+			<a href= "{{media_url}}{{ img.image.name}}"><img border='0' 
+				alt='' src = "{{media_url}}{{ img.image.name}}" 
+				
+			{% if img.width < 600 %} width="400" height="400"/>
+
+			{% elif img.width > 600 %} width ="600" height ="600"/>
+
+			{% endif %}
+				 </a><br>
+		{% endfor %}
+	</ul>
+
+<ul>
+
+	<!-- Next/Prev page links -->
+
+	{% if albums.object_list and albums.paginator.num_pages > 1 %}
+	<div class = 'pagination'>
+		<span class= 'step-links'>
+			{% if albums.has_previous %}
+				<a href = '?page= {{albums.previous_page_number}}'>previous &lt; &lt; </a>
+			{% endif %}
+
+			<span class='current'>
+				&nbsp;Page {{album.number}} of {{album.paginator.num_pages}}
+			</span>
+
+			{% if albums.has_next %}
+				<a href='?page = {{albums.next_page_number'>
+				&gt; &gt; next </a>
+			{% endif %}
+		</span>
+	</div>
+	{% endif %}
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p><a href='/register'> Register</a></p>
+<h3> Coming Soon</h3>
+<br>
+<p> Theo's World</p>
+<br>
+
+<p> Sign up below and we'll drop you an invite when we open up! </p> 
+	{% if errors %}
+		<div id='error'>
+			{% for error in errors %}
+			<p><b>{{ error }}</b></p>
+			{% endfor %}
+		</div>
+	{% endif %}
+
+
+	<form method='post' action='/welcome'>{% csrf_token %}
+		<p>First name <input type = 'text' name = 'name' value= '{{name}}'</p>
+		<p>Your e-mail <input type='text' name='email' value='{{email}}'> </p> 
+		</textarea></p>
+		<input type='submit' name='contact'>
+	</form>
+</div>
+
+{% endblock %}

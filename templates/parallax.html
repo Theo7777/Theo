@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html>
+
+
+	<head>
+		<title> My Personal Website </title>
+		<style>
+		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		body {
+			font-family: 'Lato', sans-serif;
+			font-size: 48px;
+			color:white;
+		}
+	section h2{
+			font-family: 'Lato', sans-serif;
+			font-size: 48px;
+			color:white;
+		}
+
+		#first{
+			background:url(http://marquetteredmenfootball.com/wp-includes/images/crystal/muhammad-ali-wallpaper-hd-654.jpg) 50% 0 no-repeat fixed;
+			font-family: 'Lato', sans-serif;
+			font-size: 20px;
+			color:white;
+
+
+		}
+		#first article{
+			background: url(http://www.richardshepherd.com/smashing/parallax/images/grain.png) repeat #333;
+			color: white;
+			padding: 10px 20px;
+			margin: 100px 0 0 5%;
+			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+			line-height: 1.5em;
+			color: white;
+			position: absolute;
+			top: 0;
+			box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+			border: 1px solid rgba(150, 150, 150, 0.1);
+
+		}
+		#second{
+			background:url(
+				http://img13.poco.cn/mypoco/myphoto/20120911/12/6612830820120911122231046.jpg) 50% 0 no-repeat fixed;
+			font-family: 'Lato', sans-serif;
+			font-size: 20px;
+			color:white;  
+		}
+		
+		a:link{
+		color:white;
+		}
+
+       a:visited{
+        color:white;
+      }
+     	a:hover{
+        color: #828282;
+      	}
+
+		#second article{
+			background: url(http://www.richardshepherd.com/smashing/parallax/images/grain.png) repeat #333;
+			color: white;
+			padding: 10px 10px 30px 10px;
+			margin-right:50px;
+			margin-top:150px;
+			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+			line-height: 1.5em;
+			color: white;
+			float:right;
+			top: 0;
+			box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+			border: 1px solid rgba(150, 150, 150, 0.1);
+
+		}
+		#second article li{
+			line-height: 1.5em;
+		}
+		#second article h2{
+			line-height: 1em;
+		}
+
+
+		#third{
+			background:url(http://3.bp.blogspot.com/_vAqRGOQ17I8/TGyo1tdOEXI/AAAAAAAALS8/eA9sDDJ7fN4/s1600/gladwell.jpg) 50% 0 no-repeat fixed;
+			font-family: 'Lato', sans-serif;
+			font-size: 20px;
+			color:white;
+
+		}
+
+		#third article{
+			background: url(http://www.richardshepherd.com/smashing/parallax/images/grain.png) repeat #333;
+			color: white;
+			padding: 10px 10px 20px 0;
+			margin-left:30px;
+			margin-top:150px;
+			text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.5);
+			line-height: 1.5em;
+			color: white;
+			float:left;
+			top: 0;
+			box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+			border: 1px solid rgba(150, 150, 150, 0.1);
+
+		}
+
+		#third article li{
+			line-height: 1.5em;
+		}
+		#third article h2{
+			line-height: 1em;
+		}
+		
+		.story {
+			height:1000px; padding:0; margin:0; width:100%; max-width:1920px; position: relative; margin: 0 auto;
+		}
+		</style>
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>  </script>
+  <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+  <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+
+	<script>
+		$(document).ready(function(){
+			//Cache the Window object
+			$window = $(window);
+		
+
+			//Cache the Y offset and the speed
+			$('[data-type]').each(function(){
+				$(this).data('offsetY', parseInt($(this).attr('data-offsetY')));
+				$(this).data('speed', $(this).attr('data-speed'));
+			})
+
+			//For each element that has a data-type attribute
+			$('section[data-type="background]")'.each(function(){
+				//Store some variables based on where we are
+				$(this).data('speed', parseInt($(this).attr('data-speed')));
+				var $self = $(this),
+				//set offsetCoords as pixel position of element
+				offsetCoords = $self.offset(), 
+				// set topOffset as the pixel coordinates at top of page
+				topOffset = offsetCoords.top();
+				$(window).scroll(function(){
+
+					//If this section is in view
+					if (($window.scrollTop() + $window.height()) > (topOffset) && (( topOffset + $self.height()) > $window.scrollTop() ) ) {
+
+						//Scroll the background at var speed
+						// the yPos is a negative value because we're scrolling up
+
+						var yPos = -($window.scrollTop() / $self.data('speed'));
+
+						// If this element has a Y offset then add it on
+
+						if($self.data('offsetY')) {
+							yPos +=$self.data('offsetY');
+						}
+
+						//Our final background position
+
+						var coords = '50%' + yPos + 'px';
+
+						//Move the background
+						$self.css({ backgroundPosition: coords});
+					
+						//Check for other sprites in this section
+					$('[data-type="sprite"]', $self).each(function(){
+
+						//Cache the sprite
+						$sprite = $(this);
+
+						//How far to scroll the sprite
+						var yPos = ($window.scrollTop() / $sprite.data('speed'));
+						var coords = $sprite.data('Xposition') + ' ' +(yPos + $sprite.data('offsetY')) + 'px';
+							$sprite.css({ backgroundPosition:coords});
+					})//sprites
+
+				}); // in view
+				
+						}); // window scroll
+	
+		}); //document ready
+
+
+	</script>
+	</head>
+	<body>
+		<section class='story' id='first' data-speed='8' data-type='background'>
+			<div data-type='sprite' data-offsetY='950' data-Xposition='25%' data-speed='2'
+			</div>
+			<article class='span4'>
+
+				<h2>Theo's World</h2>
+				<div>
+					<div style='text-align:center'>
+					<img class="img-circle" src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-ash3/582234_10150751481748758_2072457851_n.jpg" style="width: 300px; height: 300px; padding: 10px 0 10px 0" >
+					</div>
+					<p>I'm Theo Ohene and welcome to my personal website. I built this bad boy on a cold, snowy Sunday. </p>
+
+					<p>As you can tell from my picture, I'm really glad you've decided to visit my site.</p>
+
+					<p>Scroll down and enjoy! 
+					</p>
+				</div>
+			<div id="logo" data-type='sprite' data-offsetY = '1200' data-Xposition='25%' data-speed='2'></div>
+			</article>
+		</section>
+
+		<section class='story' id='second' data-speed='8' data-type='background'>
+			<div data-type='sprite' data-offsetY='950' data-Xposition='25%' data-speed='4'
+			</div>
+			<article class='span4'>
+
+				<h2>My Social Networks</h2>
+				<div>
+						<li><a href='#'>Facebook.com/Theo.ohene</a></li>
+						<li><a href='#'>Twitter.com/Theoohene</a></li>
+						<li><a href='#'>Linkedin/Theoohene</a></li>
+						<li><a href='#'>Github.com/Theo7777</a></li>
+				</div>
+			</article>
+		</section>
+			
+			<section class='story' id='third' data-speed='8' data-type='background'>
+			<div data-type='sprite' data-offsetY='950' data-Xposition='25%' data-speed='2'
+			</div>
+			<article class='span4'>
+
+				<h2>My Favourite Books </h2>
+				<div>
+					<ul>
+						<li>Outliers by Malcolm Gladwell</li>
+						<li>To Big To Fail by Andrew Ross Sorkin</li>
+						<li>Malcolm X Autobiography by Malcolm X</li>
+						<li>Long Walk To Freedom by Nelson Mandela</li>
+						<li>Freakonomics by Steven Levitt & Stephen J. Dubner</li>
+						<li>Harry Potter series by JK Rowling</li>
+						<li>Race of a Lifetime by Mark Halperin</li>
+						<li>The Big Short by Michael Lewis </li>
+						
+					</ul>
+				</div>
+			</article>
+		</section>
+
+
+
+
+
+
+
+
+
+	 <script src="{{STATIC_URL}}/bootstrap/js/jquery.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-transition.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-alert.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-modal.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-dropdown.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-scrollspy.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-tab.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-tooltip.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-popover.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-button.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-collapse.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-carousel.js"></script>
+    <script src="{{STATIC_URL}}/bootstrap/js/bootstrap-typeahead.js"></script>
+	</body>
+
+</html>

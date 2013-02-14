@@ -1,0 +1,10 @@
+
+{% extends "base.html" %}
+
+{% block content %} 
+
+<h2> Welcome to the drawing room </h2>
+
+<p> This is it </p>
+
+

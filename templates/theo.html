@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html>
+
+
+	<head>
+		<title> My Personal Website </title>
+		<style>
+		<link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		body{
+			font-family: 'Lato', sans-serif;
+			font-size: 72px;
+			font-color:white;
+		}
+		#home{
+			background: url(http://wallpapersus.com/wp-content/uploads/2012/06/abstract-background.jpg) 50% 0 repeat fixed; min-height:1000px;
+			height:1000px;
+			margin:0 auto;
+			width:100%;
+			max-width:1920px;
+			position:relative;
+			font-family: 'Lato', sans-serif;
+			font-size: 72px;
+			color:white;
+		}
+		#home article{
+			height:458px;
+			position:absolute;
+			text-align:center;
+			top:150px;
+			width:100%;
+		}
+
+		#about{
+			background: url(http://www.desktopwallpaperhd.net/wallpapers/6/0/dell-wallpapers-loptops-desktop-backgrounds-laptop-island-laptops-beach-65120.jpg) 50% 0 no-repeat; min-height:1000px;
+			height:1000px;
+			margin:0 auto;
+			width:100%;
+			max-width:1920px;
+			position:relative;
+			font-family: 'Lato', sans-serif;
+			font-size: 72px;
+			color:white;
+
+		}
+		#about article{
+			height:458px;
+			position:absolute;
+			text-align:center;
+			top:150px;
+			width:100%;
+		}
+		
+		</style>
+
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.0/themes/base/jquery-ui.css" />
+  <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+  <script>
+  //We want the browser and content to scroll at the same speed but the background at a much slower speed. Brower scroll / data-speed = final value yPos is a negative value as we want the background to move in the opposite direction of the user's scroll. 
+			//Put this together on our final background position
+$(document).ready(function(){
+	var $window = $(window);
+	$('section[data-type="background"]').each(function(){//interating over sections with data-type= "background"
+		var $bgobj = $(this); //assiging the object
+		$window.scroll(function(){
+			var yPos = -($window.scrollTop() /$bgobj.data('speed'));
+			var coords = '50%' + yPos + 'px';
+			//move the background
+			$bgobj.css({ backgroundPosition:coords });
+
+		})
+	});
+});
+  </script>
+	</head>
+	<body>
+		<section id ="home" data-type='background' data-speed='10' class='pages'>
+			<article> 
+				<br>
+				<br>I <br>
+
+				am <br>
+				absolute <br>
+				positioned <br>
+		
+</article>
+			
+		</section>
+
+		<section id ="about" data-type='background' data-speed='10' class='pages'>
+			<article> Simple 
+				<br>
+				Parallax 
+				<br> Scroll
+		
+
+</article>
+			
+			</section>
+
+	</body>
+
+</html>

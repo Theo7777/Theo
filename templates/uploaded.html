@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for img in image_post.new_image%}
+	<ul>
+		<a href="{{media_url}}{{img.image.name}}"><img border = "0" alt= '' src = "{{media_url}}{{img.image.name}}"
+		{% if img.width > 200 %} width="200" height="200"{% endif %}/></a>
+
+	</ul>
+	<div class= 'main'>
+
+
+	<!--albums -->
+	<ul>
+		{% for album in albums.object_list %}<br>
+			<div class ='title'><a href= {% url images.views.album album.pk %}  <h3>{{album.title}} ({{album.image_set.count}} image{{album.image_set.count|pluralize}})</h3>
+				 </div>
+			<ul>
+				{% for img in album.images %}
+					<a href="{{media_url}}{{img.image.name}}"><img border = "0" alt= '' src = "{{media_url}}{{img.image.name}}"
+						{% if img.width > 200 %} width="200" height="200"{% endif %}/></a>
+				{% endfor %}
+				
+			</ul>
+		{% endfor %}
+	</ul>
+{% endfor %}
+
+
+
+
+{% endblock %}

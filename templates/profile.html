@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+			<div class="span4 well">
+				
+					<div class="span4"><a href="{{media_url}}{{user_reg.avatar.name}}"><img alt='Profile Pic' src="{{media_url}}{{user_reg.avatar.name}}" height='200px'; width='200px'; /> </a></p></div>
+						<h4>Profile</h4>
+			          	<p><strong>Name: {{ user_reg.name }}</strong></p>
+			          	<p>Birthday: {{ user_reg.birthday }} </p>
+						<span class=" badge badge-warning">8 messages</span> <span class=" badge badge-info">10 followers</span>
+					<form>
+					<input type='text' width ='400px'>
+				</form>
+				
+						<form enctype="multipart/form-data" action="/profile" method="POST">
+							    {% csrf_token %}
+							    {% if img %} <p><img border="0" alt="Profile Pic" src="{{ img }}" /></p> {% endif %}
+							   
+
+						 		<p>{{ picture_form.avatar }}</p>
+						    	<input type="submit" value="Submit" id="submit" />
+						</form>
+					
+				</div>
+
+					<div class ='span4'>
+						<h3> Welcome {{ user_reg.name}}, check out your profile homie </h3>
+					</div>
+
+			</div>
+
+			
+
+
+
+
+	
+{% endblock %}
