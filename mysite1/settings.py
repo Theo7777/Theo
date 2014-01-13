@@ -10,7 +10,7 @@ ADMINS = (
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'theo.ohene@gmail.com'
-EMAIL_HOST_PASSWORD = 'fowler77'
+EMAIL_HOST_PASSWORD = '**'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
